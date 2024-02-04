@@ -1,0 +1,8 @@
+{
+  "name": "ProjectJSONScript",
+  "description":"A script, to easily generate JSON files for new projects.",
+  "language":"ShellScript",
+  "version":"0.1.0",
+  "category":"personal",
+
+}
