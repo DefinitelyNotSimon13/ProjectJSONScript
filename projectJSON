@@ -1,0 +1,125 @@
+#! /bin/bash
+#
+FILE=project.json
+
+confirmYN(){
+  if [ ! -z "$1" ]; then
+    msg="$1"
+  else
+    msg="Are you sure?"
+  fi
+  read -r -p "$msg [y/N] " response
+  if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
+enterToContinue(){
+  if [ ! -z "$1" ]; then
+    msg="$1"
+  else
+    msg="Press enter to continue..."
+  fi
+  read -p "$msg"
+}
+
+usage() {
+  printf "\
+    \e[1;4mUsage\e[22;24m:  
+    projectJSON [-n | -l | -c | -f | -h]
+    \t\e[3mAll parameters are optional!\e[23m
+    \vOptions:  
+    \t-n\tSet a name for the project
+    \t-l\tSet a language for the project
+    \t-c\tSet a category for the project
+    \t-f\tForce overwrite existing files
+    \t-r\tDisplay the content of an existing \"project.json\" file
+    \t-o\tOpen the file in EDITOR at the end of execution
+    \t-h\tDisplay this menu \n"
+  exit 1
+}
+
+display(){
+  if [ ! -f $FILE ]; then
+    echo "No \"project.json\" can be found in this directory!"
+    exit 1
+  fi
+  echo "Here is the project.json file in this directory:"
+  cat project.json
+  exit 0
+}
+
+open(){
+  $EDITOR project.json
+  exit 0
+}
+name=""
+language=""
+category=""
+forced=false
+open=false
+
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied, using default(empty) values!"
+fi
+
+while getopts ":n:l:c:froh:" o; do
+  case $o in
+    (n) name=$OPTARG;;
+    (l) language=$OPTARG;;
+    (c) category=$OPTARG;;
+    (f) forced=true;;
+    (r) display;;
+    (o) open=true;;
+    (h) usage;;
+    (*) usage
+  esac
+done
+
+if [ -f $FILE ]; then
+  echo "project.json already exists in this directory!"
+  echo "Here are it's contents:"
+  cat $FILE
+  printf "\n"
+  if $forced;
+  then
+    if ! confirmYN "Are you sure you want to overwrite the existing file?";
+    then
+      if $open;then
+        enterToContinue "Press enter to continue to $EDITOR"
+        open
+      fi
+      echo "Exiting..."
+      exit 1
+    fi
+  else
+    if $open;then
+      enterToContinue "Press enter to continue to $EDITOR"
+      open
+    fi
+    echo "Exiting..."
+    exit 1
+  fi
+fi
+echo "Creating \"project.json\" in current directory..."
+
+printf "\
+{ 
+  \"name\":  \"%s\",
+  \"description\": \"\",
+  \"language\": \"%s\",
+  \"version\": \"0.1.0\",
+  \"category\": \"%s\"
+}" \
+"${name}" "${language}" "${category}">project.json
+
+echo "\"project.json\" created in current directory!"
+if $open;then
+  enterToContinue "Press enter to continue to $EDITOR"
+  open
+fi
+exit 0
