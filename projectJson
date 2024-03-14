@@ -112,9 +112,9 @@ printf "\
   \"name\":  \"%s\",
   \"description\": \"\",
   \"language\": \"%s\",
-  \"major_version\": 0,
-  \"minor_version\": 1,
-  \"patch_version\": 0,
+  \"major_version\": \"0\",
+  \"minor_version\": \"1\",
+  \"patch_version\": \"0\",
   \"category\": \"%s\",
   \"github_repo\": \"\"
 }" \

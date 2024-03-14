@@ -2,9 +2,9 @@
   "name":  "jsonProjectScript",
   "description": "Scripts for managing project information in JSON format",
   "language": "shell",
-  "major_version": 0,
-  "minor_version": 1,
-  "patch_version": 5,
+  "major_version": "0",
+  "minor_version": "1",
+  "patch_version": "5",
   "category": "utilities",
   "github_repo": "https://github.com/DefinitelyNotSimon13/ProjectJSONScript"
 }
