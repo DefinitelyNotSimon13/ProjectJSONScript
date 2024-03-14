@@ -1,7 +1,7 @@
 { 
   "name":  "jsonProjectScript",
   "description": "Scripts for managing project information in JSON format",
-  "language": "Shell",
+  "language": "shell",
   "major_version": 0,
   "minor_version": 1,
   "patch_version": 5,

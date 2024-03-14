@@ -108,7 +108,7 @@ fi
 echo "Creating \"project.json\" in current directory..."
 
 printf "\
-{ 
+{
   \"name\":  \"%s\",
   \"description\": \"\",
   \"language\": \"%s\",
