@@ -1,8 +1,10 @@
-{
-  "name": "ProjectJSONScript",
-  "description":"A script, to easily generate JSON files for new projects.",
-  "language":"ShellScript",
-  "version":"0.1.0",
-  "category":"personal",
-
+{ 
+  "name":  "jsonProjectScript",
+  "description": "Scripts for managing project information in JSON format",
+  "language": "Shell",
+  "major_version": 0,
+  "minor_version": 1,
+  "patch_version": 5,
+  "category": "utilities",
+  "github_repo": "https://github.com/DefinitelyNotSimon13/ProjectJSONScript"
 }
